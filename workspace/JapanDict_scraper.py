@@ -2,8 +2,10 @@
 # -*- coding:utf-8 -*-
 
 import json
+import random
 import requests
 from bs4 import BeautifulSoup
+from time import sleep
 
 def main(category_url, jsonFILE):
     """
@@ -36,6 +38,7 @@ def main(category_url, jsonFILE):
     
     for i in range(1, last_pageINT + 1):    #從第一頁～最後一頁
         page_url = f"{category_url}?page={i}"  #拿到每頁網址爬蟲
+        sleep(random.randrange(1, 10))
         response = requests.get(page_url, headers=headers)    
         htmlSTR = response.text
         soup = BeautifulSoup(htmlSTR, "lxml")
